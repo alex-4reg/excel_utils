@@ -36,6 +36,6 @@ print(variables)
 while True:
     index = randint(0, len(values) - 1)
     notification.notify(message=values[index], timeout=7)
-    time.sleep(2)
+    time.sleep(7)
     notification.notify(message=variables[index], timeout=7)
-    time.sleep(5)
+    time.sleep(120)
