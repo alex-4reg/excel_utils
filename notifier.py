@@ -1,4 +1,5 @@
 import time
+import os
 from plyer import notification
 from openpyxl import load_workbook
 from random import randint
@@ -8,7 +9,11 @@ def notify(title, timeout):
     notification.notify(title, timeout)
 
 
-workbook = load_workbook("./input/word_list.xlsx")
+input_file = "./input/word_list.xlsx"
+if input_file is None or not os.path.isfile(input_file):
+    raise ValueError("'input_file' should be an existing file")
+
+workbook = load_workbook(input_file)
 sheet = workbook.active
 
 variables = []
@@ -31,6 +36,6 @@ print(variables)
 while True:
     index = randint(0, len(values) - 1)
     notification.notify(message=values[index], timeout=7)
-    time.sleep(10)
+    time.sleep(2)
     notification.notify(message=variables[index], timeout=7)
-    time.sleep(120)
+    time.sleep(5)
